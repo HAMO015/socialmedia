@@ -1,0 +1,24 @@
+{
+  "name": "socialmedia",
+  "version": "1.0.0",
+  "description": "Statische Website für Mohammad Douba: Empfang, Google und Social für Praxen. Deploy über Vercel.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HAMO015/socialmedia.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/HAMO015/socialmedia/issues"
+  },
+  "homepage": "https://github.com/HAMO015/socialmedia#readme",
+  "dependencies": {
+    "pdf-lib": "^1.17.1"
+  }
+}

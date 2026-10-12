@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2000" height="2000" viewBox="0 0 2000 2000">
+  <g transform="translate(760 560) scale(10)" fill="none" stroke="#1a1a1e" stroke-width="2.75" stroke-linecap="square" stroke-linejoin="miter">
+    <path d="M14 10v28h11C34 38 39.5 32.8 39.5 28"/>
+    <path d="M39.5 20C39.5 15.2 34 10 25 10H14"/>
+    <circle cx="39.5" cy="24" r="2.2" fill="#468cff" stroke="none"/>
+  </g>
+  <text x="1000" y="1280" text-anchor="middle" fill="#1a1a1e" font-family="Segoe UI, Arial, sans-serif" font-size="92" font-weight="700" letter-spacing="18">DOUBATECH</text>
+</svg>

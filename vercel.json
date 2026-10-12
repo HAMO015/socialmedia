@@ -1,3 +1,8 @@
 {
-  "cleanUrls": true
+  "cleanUrls": true,
+  "functions": {
+    "api/check.js": {
+      "maxDuration": 20
+    }
+  }
 }

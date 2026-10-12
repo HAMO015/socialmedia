@@ -1,3 +1,3 @@
-# socialmedia
+# DOUBATECH
 
-Leeres Webprojekt. Statische Seite, deployed über GitHub auf Vercel.
+Statische Website für Mohammad Douba: Empfang, Google und Social für Praxen. Deploy über Vercel.

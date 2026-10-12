@@ -3,17 +3,567 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>socialmedia</title>
+    <title>DOUBATECH — Empfang, Google und Social für Praxen</title>
+    <meta
+      name="description"
+      content="Mohammad Douba übernimmt Telefon-Empfang, Google-Auftritt und Social Media für Praxen. Social ab 599 € im Monat, Premium 999 €. Freigabe vor Veröffentlichung."
+    />
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="styles.css" />
+    <script>
+      (function () {
+        try {
+          if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+          document.documentElement.classList.add("cinema-pending");
+        } catch (e) {}
+      })();
+    </script>
   </head>
   <body>
-    <main>
-      <p class="eyebrow">socialmedia</p>
-      <h1>Bereit für den nächsten Schritt.</h1>
-      <p class="lede">
-        Leeres Webprojekt, live auf Vercel. Hier kann die eigentliche App
-        entstehen.
-      </p>
+    <div id="cinema-intro" class="cinema-intro" hidden aria-hidden="true">
+      <button type="button" class="cinema-skip" id="cinema-skip">Überspringen</button>
+      <div class="cinema-stage">
+        <div class="cinema-lockup">
+          <svg class="logo-d cinema-d" viewBox="0 0 48 48" aria-hidden="true" focusable="false">
+            <path
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.75"
+              stroke-linecap="square"
+              stroke-linejoin="miter"
+              d="M14 10v28h11C34 38 39.5 32.8 39.5 28"
+            />
+            <path
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.75"
+              stroke-linecap="square"
+              stroke-linejoin="miter"
+              d="M39.5 20C39.5 15.2 34 10 25 10H14"
+            />
+            <circle class="logo-d-accent" cx="39.5" cy="24" r="2.2" />
+          </svg>
+          <p class="cinema-mark">DOUBATECH</p>
+        </div>
+        <p class="cinema-line">Macht dich digital präsent.</p>
+      </div>
+    </div>
+    <script>
+      (function () {
+        var intro = document.getElementById("cinema-intro");
+        var skipBtn = document.getElementById("cinema-skip");
+        var reduceMotion = false;
+        try {
+          reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        } catch (e) {}
+
+        function clearPending() {
+          document.documentElement.classList.remove("cinema-pending");
+          document.body.classList.remove("cinema-active");
+        }
+
+        function dismissIntro() {
+          clearPending();
+          if (!intro) return;
+          if (intro.getAttribute("data-done") === "1") {
+            if (intro.parentNode) intro.parentNode.removeChild(intro);
+            return;
+          }
+          intro.setAttribute("data-done", "1");
+          intro.classList.add("is-leaving");
+          intro.style.pointerEvents = "none";
+          intro.setAttribute("aria-hidden", "true");
+
+          var cleaned = false;
+          function cleanup() {
+            if (cleaned) return;
+            cleaned = true;
+            clearPending();
+            intro.hidden = true;
+            intro.style.display = "none";
+            intro.style.pointerEvents = "none";
+            if (intro.parentNode) intro.parentNode.removeChild(intro);
+          }
+
+          intro.addEventListener("transitionend", cleanup);
+          window.setTimeout(cleanup, 400);
+        }
+
+        // Hard safety: never leave the page locked behind the overlay.
+        window.setTimeout(function () {
+          clearPending();
+          if (intro && intro.getAttribute("data-done") !== "1") dismissIntro();
+          else if (intro && intro.parentNode) {
+            try {
+              intro.parentNode.removeChild(intro);
+            } catch (e) {}
+          }
+        }, 2000);
+
+        if (!intro || reduceMotion) {
+          clearPending();
+          if (intro && intro.parentNode) intro.parentNode.removeChild(intro);
+          return;
+        }
+
+        // Show on every homepage visit (no localStorage gate).
+        intro.hidden = false;
+        intro.removeAttribute("hidden");
+        intro.setAttribute("aria-hidden", "false");
+        intro.classList.add("is-on");
+        document.body.classList.add("cinema-active");
+        clearPending();
+        if (skipBtn) skipBtn.addEventListener("click", dismissIntro);
+        window.setTimeout(dismissIntro, 1500);
+      })();
+    </script>
+    <a class="skip" href="#inhalt">Zum Inhalt springen</a>
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="logo" href="#start" aria-label="DOUBATECH Startseite">
+          <span class="logo-lockup">
+            <svg class="logo-d" viewBox="0 0 48 48" aria-hidden="true" focusable="false">
+            <path
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.75"
+              stroke-linecap="square"
+              stroke-linejoin="miter"
+              d="M14 10v28h11C34 38 39.5 32.8 39.5 28"
+            />
+            <path
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.75"
+              stroke-linecap="square"
+              stroke-linejoin="miter"
+              d="M39.5 20C39.5 15.2 34 10 25 10H14"
+            />
+            <circle class="logo-d-accent" cx="39.5" cy="24" r="2.2" />
+          </svg>
+            <span class="logo-word">DOUBATECH</span>
+          </span>
+        </a>
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+          Menü
+        </button>
+        <nav id="site-nav" class="nav-links" aria-label="Hauptnavigation">
+          <a href="#start" aria-current="page">Start</a>
+          <a href="#leistungen">Leistungen</a>
+          <a href="#sichtbar">Sichtbarkeit</a>
+          <a href="#ablauf">Ablauf</a>
+          <a class="btn btn-secondary header-cta nav-demo" href="#freigabe-demo">Demo</a>
+          <a class="btn btn-secondary header-cta nav-check" href="#pruefen">Selbst-Check</a>
+          <a class="btn btn-primary header-cta nav-ask" href="#kontakt">Anfrage</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="inhalt">
+      <section class="hero" id="start">
+        <div class="wrap hero-grid">
+          <div>
+            <p class="eyebrow">
+              <span>DOUBATECH</span>
+              <span>Mohammad Douba</span>
+            </p>
+            <h1>Anrufe gehen verloren,<br />während du behandelst.</h1>
+            <hr class="rule" />
+            <p class="hero-copy">
+              DOUBATECH übernimmt Telefon, Google und Social — nichts geht live ohne dein Ja.
+            </p>
+            <div class="hero-actions">
+              <a class="btn dark" href="#pruefen">Praxis prüfen</a>
+              <a class="btn ghost" href="#kontakt">Anfrage</a>
+            </div>
+          </div>
+
+          <div class="check-card" id="pruefen">
+            <span class="check-tick check-tick-tl" aria-hidden="true"></span>
+            <span class="check-tick check-tick-tr" aria-hidden="true"></span>
+            <span class="check-tick check-tick-bl" aria-hidden="true"></span>
+            <span class="check-tick check-tick-br" aria-hidden="true"></span>
+            <div class="check-card-head">
+              <p class="kicker check-kicker">Kostenloser Check</p>
+              <span class="live-badge" id="check-live" data-state="idle" title="Prüft öffentliche Websites live">
+                <span class="live-dot-wrap" aria-hidden="true">
+                  <span class="live-ring"></span>
+                  <span class="live-dot"></span>
+                </span>
+                <span class="live-label" id="check-live-label">Live</span>
+              </span>
+            </div>
+            <h2>Digital-Stand prüfen.</h2>
+            <p class="sub">
+              Praxisname und Ort reichen oft — oder direkt die Website. Namenssuche kann danebenliegen;
+              die Website-Adresse ist zuverlässiger.
+            </p>
+            <form id="check-form" class="check-well">
+              <p class="well-label">Praxis oder Website</p>
+              <div class="check-row">
+                <label class="sr" for="website">Praxisname und Ort oder Website</label>
+                <input
+                  id="website"
+                  name="website"
+                  type="text"
+                  inputmode="text"
+                  autocomplete="organization"
+                  placeholder="Praxisname und Ort oder Website"
+                  required
+                />
+                <button id="check-button" class="btn dark" type="submit" disabled>Praxis prüfen</button>
+              </div>
+              <p class="example">z. B. Hausarztpraxis am Markt Köln — oder www.meine-praxis.de</p>
+              <p id="check-status" class="check-status" hidden></p>
+              <div id="check-result" class="check-result" hidden>
+                <h3 id="check-name"></h3>
+                <p id="check-resolved" class="check-resolved" hidden></p>
+                <div id="check-score" class="check-score" hidden>
+                  <p class="check-score-label" id="check-score-label">Digital-Stand</p>
+                  <p class="check-score-value"><span id="check-score-num">0</span><span class="check-score-unit">%</span></p>
+                  <p class="check-gap" id="check-gap" hidden></p>
+                  <p class="check-score-detail" id="check-score-detail"></p>
+                  <p class="check-score-note" id="check-score-note"></p>
+                </div>
+                <p id="check-message" class="check-message" hidden></p>
+                <div id="check-missing-wrap" class="check-group" hidden>
+                  <p class="check-group-title">Was fehlt</p>
+                  <ul id="check-missing" class="check-list check-list-miss"></ul>
+                </div>
+                <details id="check-present-wrap" class="check-group check-present-details" hidden>
+                  <summary class="check-group-title">Was vorhanden ist</summary>
+                  <ul id="check-present" class="check-list"></ul>
+                </details>
+                <p id="check-error" class="check-error" hidden></p>
+                <a class="btn dark" href="#kontakt">Darüber sprechen</a>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <section class="band" id="leistungen" aria-labelledby="module-title">
+        <div class="wrap">
+          <div class="section-head">
+            <p class="kicker">Leistungen</p>
+            <h2 id="module-title">Drei Dinge. Mehr brauchst du nicht.</h2>
+            <p class="sub">Telefon, Google, Social — du entscheidest, was davon läuft. Der Rest kann später kommen.</p>
+          </div>
+          <div class="cards service-cards">
+            <article class="card service-phone">
+              <p class="num">01</p>
+              <h3>Telefon-Empfang</h3>
+              <p>Während du behandelst, nimmt jemand Anrufe an. Rückruf notiert.</p>
+            </article>
+            <article class="card service-google">
+              <p class="num">02</p>
+              <h3>Google-Profil</h3>
+              <p>Foto, Zeiten, Weg zum Termin — Eintrag verständlich.</p>
+            </article>
+            <article class="card service-social">
+              <p class="num">03</p>
+              <h3>Social Media</h3>
+              <p>Beiträge und Videos für Instagram, Facebook, TikTok und WhatsApp Business. Erst live, wenn du Ja sagst.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="band alt" id="freigabe-demo" aria-labelledby="freigabe-demo-title">
+        <div class="wrap approval-layout">
+          <div class="section-head">
+            <p class="kicker">Freigabe</p>
+            <h2 id="freigabe-demo-title">So sieht deine Freigabe aus.</h2>
+            <p class="sub">
+              Nichts geht online ohne dein Ja. Probier es aus — das ist genau der Schritt, den du später auf dem Handy siehst.
+            </p>
+          </div>
+          <div class="phone" id="approval-phone">
+            <div class="phone-bar" aria-hidden="true"><span></span></div>
+            <div class="phone-note" id="approval-note">
+              <span class="phone-note-app">DOUBATECH</span>
+              <strong>Entwurf wartet auf dein Ja</strong>
+              <span>Sprechzeiten — Instagram</span>
+            </div>
+            <article class="phone-post" id="approval-post">
+              <header class="phone-post-top">
+                <span class="phone-avatar" aria-hidden="true">D</span>
+                <span>
+                  <strong>Deine Praxis</strong>
+                  <span class="phone-meta">Entwurf · Instagram</span>
+                </span>
+                <span class="phone-stamp" id="approval-stamp">Freigabe offen</span>
+              </header>
+              <p class="phone-copy" id="approval-copy">
+                Neu in der Praxis: kurze Videos aus dem Alltag, damit ihr uns kennt, bevor ihr anruft. Der Beitrag geht erst online, wenn ihr Ja sagt.
+              </p>
+              <label class="phone-change" id="approval-change" hidden>
+                <span>Was soll anders sein?</span>
+                <input id="approval-change-input" type="text" placeholder="z. B. lieber Fotos statt Videos" />
+              </label>
+              <div class="phone-actions" id="approval-actions">
+                <button type="button" class="phone-btn phone-btn-ghost" id="approval-edit">Änderung</button>
+                <button type="button" class="phone-btn" id="approval-ok">Freigeben</button>
+              </div>
+            </article>
+            <p class="phone-live" id="approval-live" hidden>Live</p>
+            <button type="button" class="phone-reset" id="approval-reset" hidden>Nochmal ansehen</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="band" id="telefon-demo" aria-labelledby="telefon-demo-title">
+        <div class="wrap approval-layout">
+          <div class="section-head">
+            <p class="kicker">Telefon</p>
+            <h2 id="telefon-demo-title">So läuft der Anruf.</h2>
+            <p class="sub">
+              Während du behandelst, nimmt die KI ab, fragt das Nötige und hinterlässt dir eine klare Notiz. Kein medizinischer Rat.
+            </p>
+          </div>
+          <div class="phone call-phone" id="call-phone" data-state="incoming">
+            <div class="phone-bar" aria-hidden="true"><span></span></div>
+
+            <div class="call-incoming" id="call-incoming">
+              <div class="call-ring" aria-hidden="true">
+                <span class="call-ring-pulse"></span>
+                <span class="call-ring-avatar">P</span>
+              </div>
+              <p class="call-caller">Patient</p>
+              <p class="call-label">Klingelt</p>
+              <p class="call-hint" id="call-hint">Praxis in Behandlung — die KI geht ran.</p>
+              <button type="button" class="phone-btn call-play" id="call-play">Anruf abspielen</button>
+            </div>
+
+            <div class="call-active" id="call-active" hidden>
+              <div class="call-status" aria-live="polite">
+                <span class="call-status-dot" aria-hidden="true"></span>
+                <span id="call-status-text">KI am Apparat</span>
+              </div>
+              <div class="call-stage" id="call-stage">
+                <div class="call-transcript" id="call-transcript" role="log" aria-live="polite" aria-relevant="additions"></div>
+                <aside class="call-note" id="call-note" hidden>
+                  <p class="call-note-kicker">Für dich</p>
+                  <strong class="call-note-title">Rückruf notiert</strong>
+                  <dl class="call-note-meta">
+                    <div><dt>Name</dt><dd>Anna Berger</dd></div>
+                    <div><dt>Anliegen</dt><dd>Kontrolle</dd></div>
+                    <div><dt>Wunsch</dt><dd>Rückruf</dd></div>
+                    <div><dt>Zeit</dt><dd>Donnerstagvormittag</dd></div>
+                  </dl>
+                  <p class="call-note-disclaimer">
+                    Die Praxis hat nicht abgenommen. Die Notiz liegt bereit, wenn die Behandlung vorbei ist.
+                  </p>
+                </aside>
+              </div>
+              <button type="button" class="phone-reset" id="call-reset" hidden>Nochmal ansehen</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="band" id="sichtbar" aria-labelledby="sichtbar-title">
+        <div class="wrap">
+          <div class="section-head">
+            <p class="kicker">Für deine Patienten</p>
+            <h2 id="sichtbar-title">Was der Patient sieht.</h2>
+            <p class="sub">Kein Fake-Review. So wirkt deine Praxis, wenn Telefon, Google und Social sauber laufen.</p>
+          </div>
+          <div class="cards patient-cards">
+            <article class="mock" aria-label="Google-Eintrag Beispiel">
+              <div class="mock-screen">
+                <div class="g-top">
+                  <span>Google</span>
+                  <span class="stars" aria-hidden="true">★★★★★</span>
+                </div>
+                <p class="g-name">Deine Praxis</p>
+                <p class="hint">Geöffnet · Termin anfragen</p>
+                <div class="chip-row">
+                  <span class="chip">Foto</span>
+                  <span class="chip">Zeiten</span>
+                  <span class="chip">Route</span>
+                </div>
+              </div>
+              <div class="mock-body">
+                <p class="mock-kicker">Google</p>
+                <h3>Gefunden werden</h3>
+                <p class="sub">Wer in der Nähe sucht, sieht dich klar — mit Bild, Zeiten und dem nächsten Schritt.</p>
+              </div>
+            </article>
+            <article class="mock" aria-label="Telefon Beispiel">
+              <div class="mock-screen">
+                <div class="phone-top">
+                  <span>Anruf</span>
+                  <span class="stamp">angenommen</span>
+                </div>
+                <p class="phone-name">Praxis-Telefon</p>
+                <p class="hint">„Einen Moment, ich notiere den Rückruf.“</p>
+                <div class="chip-row">
+                  <span class="chip">Name</span>
+                  <span class="chip">Anliegen</span>
+                  <span class="chip">Rückruf</span>
+                </div>
+              </div>
+              <div class="mock-body">
+                <p class="mock-kicker">Telefon</p>
+                <h3>Erreicht werden</h3>
+                <p class="sub">Anrufe gehen nicht ins Leere. Der Patient merkt: hier antwortet jemand.</p>
+              </div>
+            </article>
+            <article class="mock" aria-label="Social Beitrag Beispiel">
+              <div class="mock-screen">
+                <div class="post-top">
+                  <span>Beitrag</span>
+                  <span class="stamp">freigegeben</span>
+                </div>
+                <p class="post-text">Neue Öffnungszeiten ab Montag — Termin einfach online oder telefonisch.</p>
+                <div class="tag-row">
+                  <span class="tag">klar</span>
+                  <span class="tag">kurz</span>
+                  <span class="tag">dein Ton</span>
+                </div>
+              </div>
+              <div class="mock-body">
+                <p class="mock-kicker">Social</p>
+                <h3>Wiedererkannt werden</h3>
+                <p class="sub">Ruhige, verständliche Beiträge — erst live, wenn du sie freigibst.</p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="band alt" id="ablauf" aria-labelledby="ablauf-title">
+        <div class="wrap">
+          <div class="section-head">
+            <p class="kicker">Ablauf</p>
+            <h2 id="ablauf-title">So läuft es ab.</h2>
+            <p class="sub">Kurz und klar — Mohammad Douba setzt das selbst um. Du behältst die Kontrolle.</p>
+          </div>
+          <div class="steps-wrap" data-step="0">
+            <ol class="steps">
+              <li data-step="1">
+                <span class="num">01</span>
+                <strong>Prüfen</strong>
+                <p class="sub">Wir schauen, was öffentlich schon da ist — Google, Telefon, Seiten.</p>
+              </li>
+              <li data-step="2">
+                <span class="num">02</span>
+                <strong>Vorschlagen</strong>
+                <p class="sub">Du siehst den Plan und den Preis, bevor etwas startet.</p>
+              </li>
+              <li data-step="3">
+                <span class="num">03</span>
+                <strong>Freigeben</strong>
+                <p class="sub">Ohne dein OK geht nichts live. Du entscheidest den Ton.</p>
+              </li>
+              <li data-step="4">
+                <span class="num">04</span>
+                <strong>Umsetzen</strong>
+                <p class="sub">Dann läuft es. Du behandelst — der Rest bleibt organisiert.</p>
+              </li>
+            </ol>
+            <div class="steps-guide" aria-hidden="true">
+              <div class="steps-guide-bar">
+                <div class="steps-guide-fill"></div>
+              </div>
+              <p class="steps-guide-meta">
+                <span class="steps-guide-name">Ablauf</span>
+                <span class="steps-guide-pct">0%</span>
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="band alt close-band" id="kontakt" aria-labelledby="kontakt-title">
+        <div class="wrap contact-grid">
+          <div class="contact-copy">
+            <p class="kicker">Anfrage</p>
+            <h2 id="kontakt-title">Schreib Mohammad.</h2>
+            <p class="sub">
+              Eine Person, keine Warteschlange. Kurz sagen, was du brauchst — er meldet sich
+              mit dem nächsten sinnvollen Schritt.
+            </p>
+            <ul class="contact-points">
+              <li>Antwort in wenigen Tagen</li>
+              <li>Preis nach dem Check</li>
+              <li>Nichts geht live ohne dein OK — auch KI-Entwürfe</li>
+            </ul>
+          </div>
+          <div class="contact-panel">
+            <form id="contact-form" novalidate>
+              <label class="field"><span>Dein Name <span class="pflicht">(Pflicht)</span></span><input name="name" type="text" autocomplete="name" required minlength="2" aria-required="true" /></label>
+              <label class="field"><span>E-Mail</span><input name="email" type="email" autocomplete="email" required /></label>
+              <label class="field"><span>Telefon <span class="pflicht">(Pflicht)</span></span><input name="phone" type="tel" autocomplete="tel" required inputmode="tel" aria-required="true" /></label>
+              <label class="field"><span>Praxis <span class="pflicht">(Pflicht)</span></span><input id="contact-praxis" name="praxis" type="text" autocomplete="organization" required minlength="2" aria-required="true" /></label>
+              <label class="field"><span>Ort</span><input name="city" type="text" autocomplete="address-level2" required minlength="2" /></label>
+              <fieldset class="service-pick">
+                <legend>Was brauchst du?</legend>
+                <p class="service-pick-hint">Mindestens eine Leistung wählen.</p>
+                <ul class="service-options" role="list">
+                  <li>
+                    <label class="service-option">
+                      <input type="checkbox" name="services" value="Telefon-Empfang" />
+                      <span>Telefon-Empfang</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="service-option">
+                      <input type="checkbox" name="services" value="Google-Profil" />
+                      <span>Google-Profil</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="service-option">
+                      <input type="checkbox" name="services" value="Social Media" />
+                      <span>Social Media</span>
+                    </label>
+                  </li>
+                </ul>
+              </fieldset>
+              <label class="field"><span>Sonst noch etwas? <span class="optional">(optional)</span></span><textarea id="note" name="note" rows="3" maxlength="1000" placeholder="z. B. Website, zweite Adresse, offene Stelle"></textarea></label>
+              <label class="consent">
+                <input name="consent" type="checkbox" required aria-required="true" />
+                <span>Ich habe die <a href="datenschutz">Datenschutzhinweise</a> gelesen. Meine Angaben dürfen zur Bearbeitung dieser Anfrage verwendet werden.</span>
+              </label>
+              <input
+                class="hp"
+                name="douba_hp"
+                type="text"
+                value=""
+                tabindex="-1"
+                autocomplete="off"
+                aria-hidden="true"
+                data-lpignore="true"
+                data-1p-ignore="true"
+                data-form-type="other"
+              />
+              <button class="btn" type="submit">Anfrage senden</button>
+              <p id="form-status" class="form-status" role="status"></p>
+            </form>
+            <div id="ready" class="ready" hidden>
+              <p>Danke für deine Anfrage. Mohammad Douba liest sie selbst und meldet sich.</p>
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
+    <footer class="site-footer">
+      <div class="wrap footer-grid">
+        <div class="footer-brand">
+          <strong>DOUBATECH</strong>
+          <p>Empfang · Google · Social — für Praxen.<br />© 2026 Mohammad Douba</p>
+        </div>
+        <nav class="footer-links" aria-label="Rechtliches">
+          <a href="impressum">Impressum</a>
+          <a href="datenschutz">Datenschutz</a>
+          <a href="agb">AGB</a>
+          <a href="avv">AVV</a>
+          <a href="rechtliches">Weitere rechtliche Hinweise</a>
+        </nav>
+      </div>
+    </footer>
+    <script src="app.js?v=inquiry-3"></script>
   </body>
 </html>
