@@ -1,0 +1,45 @@
+{
+  "name": "true-crime-opener",
+  "version": "1.0.0",
+  "description": "Fiktiver True-Crime-Cold-Open in Remotion. Composition ColdOpen, 1080x1920.",
+  "repository": {},
+  "license": "UNLICENSED",
+  "engines": {
+    "node": "^20.19.0 || ^22.13.0 || >=24"
+  },
+  "private": true,
+  "dependencies": {
+    "@react-three/fiber": "9.2.0",
+    "@remotion/cli": "4.0.546",
+    "@remotion/google-fonts": "4.0.546",
+    "@remotion/media": "4.0.546",
+    "@remotion/three": "4.0.546",
+    "@remotion/zod-types": "4.0.546",
+    "mediabunny": "1.66.0",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
+    "remotion": "4.0.546",
+    "three": "0.178.0",
+    "zod": "4.6.7"
+  },
+  "devDependencies": {
+    "@remotion/eslint-config-flat": "4.0.546",
+    "@types/react": "19.3.0",
+    "@types/three": "0.170.0",
+    "@types/web": "0.0.166",
+    "eslint": "10.15.0",
+    "prettier": "3.8.1",
+    "typescript": "5.9.3"
+  },
+  "scripts": {
+    "dev": "remotion studio",
+    "build": "remotion bundle",
+    "upgrade": "remotion upgrade",
+    "lint": "eslint src && tsc",
+    "hits": "node scripts/make-hits.mjs",
+    "render": "remotion render ColdOpen out/cold-open.mp4"
+  },
+  "allowScripts": {
+    "esbuild": false
+  }
+}

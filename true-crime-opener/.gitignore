@@ -1,0 +1,8 @@
+node_modules
+dist
+.DS_Store
+.env
+
+# Ignore render output, but keep the delivered cut.
+out/*
+!out/cold-open.mp4
